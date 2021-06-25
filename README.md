@@ -1,3 +1,9 @@
+**Fork Updates**
+1. Compatibility with tf2
+2. If rotation is applied, always perform up to 180° rotations regardless of magnitude and randomly mirror the image
+
+**Original readme**
+
 *Updated. Repository under construction.*
 
 This repository includes the implementation of a method proposed in **"Tailoring automated data augmentation to H&E-stained histopathology"** accepted to MIDL 2021.
