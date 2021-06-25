@@ -1,7 +1,7 @@
 """
 This file contains a class for augmenting patches from whole slide images by applying color correction in HED color space.
 """
-from utils.custom_hed_transform import rgb2hed, hed2rgb
+from .utils.custom_hed_transform import rgb2hed, hed2rgb
 from . import coloraugmenterbase as dptcoloraugmenterbase
 
 import numpy as np

@@ -1,6 +1,4 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
+
 """
 This repository is build upon RandAugment implementation
 https://arxiv.org/abs/1909.13719 published here
@@ -28,8 +26,6 @@ RandAugment Reference: https://arxiv.org/abs/1909.13719
 import inspect
 import numpy as np
 import math
-from tensorflow.contrib import image as contrib_image
-from tensorflow.contrib import training as contrib_training
 from PIL import Image, ImageEnhance, ImageOps
 from augmenters.color.hsbcoloraugmenter import HsbColorAugmenter
 from augmenters.color.hedcoloraugmenter import HedColorAugmenter
@@ -287,9 +283,9 @@ def level_to_arg(hparams):
       'ShearY': _shear_level_to_arg,
       # pylint:disable=g-long-lambda
       'TranslateX': lambda level: _translate_level_to_arg(
-          level, hparams.translate_const),
+          level, hparams['translate_const']),
       'TranslateY': lambda level: _translate_level_to_arg(
-          level, hparams.translate_const),
+          level, hparams['translate_const']),
       # pylint:enable=g-long-lambda
   }
 
@@ -424,7 +420,7 @@ def distort_image_with_randaugment(image, num_layers, magnitude,ra_type):
   #print(magnitude)
   replace_value = (128, 128, 128)#[128] * 3
   #tf.logging.info('Using RandAug.')
-  augmentation_hparams = contrib_training.HParams(cutout_const=40, translate_const=10)
+  augmentation_hparams = dict(cutout_const=40, translate_const=10)
   #The 'Default' option is the H&E tailored randaugment
   if ra_type== 'Default': 
     available_ops = ['TranslateX', 'TranslateY','ShearX', 'ShearY','Brightness', 'Sharpness','Color', 'Contrast','Rotate', 'Equalize','Identity','Hsv','Hed']  
