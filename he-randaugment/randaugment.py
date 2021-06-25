@@ -29,6 +29,7 @@ import math
 from PIL import Image, ImageEnhance, ImageOps
 from augmenters.color.hsbcoloraugmenter import HsbColorAugmenter
 from augmenters.color.hedcoloraugmenter import HedColorAugmenter
+from scipy.ndimage.interpolation import affine_transform
 import random
 
 # This signifies the max integer that the controller RNN could predict for the
@@ -94,12 +95,14 @@ def posterize(image, bits):
 def rotate(image,degrees, replace):
     """Equivalent of PIL Posterize."""
     image = Image.fromarray(image)
-    image =  image.rotate(angle=degrees,fillcolor =replace)
+    
     
     #randomly flip the image
     if np.random.choice([True, False]):
         image = ImageOps.mirror(image)
     
+    image =  image.rotate(angle=degrees,fillcolor =replace, resample=Image.BILINEAR)
+
     return np.asarray(image)
 
 
