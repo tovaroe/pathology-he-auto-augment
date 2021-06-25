@@ -95,6 +95,11 @@ def rotate(image,degrees, replace):
     """Equivalent of PIL Posterize."""
     image = Image.fromarray(image)
     image =  image.rotate(angle=degrees,fillcolor =replace)
+    
+    #randomly flip the image
+    if np.random.choice([True, False]):
+        image = ImageOps.mirror(image)
+    
     return np.asarray(image)
 
 
@@ -216,7 +221,11 @@ def _randomly_negate_tensor(tensor):
 
 
 def _rotate_level_to_arg(level):
-  level = (level/_MAX_LEVEL) * 30.
+  #level = (level/_MAX_LEVEL) * 30.
+  
+  #Always perform up to 180° rotations
+  level = np.random.choice(180)+1.
+  
   level = _randomly_negate_tensor(level)
   return (level,)
 
