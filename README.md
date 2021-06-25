@@ -1,4 +1,4 @@
-**Fork Updates**
+**Fork Changes**
 1. Compatibility with tf2
 2. If rotation is applied, always perform up to 180° rotations regardless of magnitude and randomly mirror the image
 
