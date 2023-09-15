@@ -95,8 +95,7 @@ def posterize(image, bits):
 def rotate(image,degrees, replace):
     """Equivalent of PIL Posterize."""
     image = Image.fromarray(image)
-    
-    
+      
     #randomly flip the image
     if np.random.choice([True, False]):
         image = ImageOps.mirror(image)
